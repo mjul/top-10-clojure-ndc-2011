@@ -4,8 +4,8 @@
 (defrecord Quote [bid ask symbol])
 
 (defn diff [old new]
-  (let [changed (remove (fn [k]
-                          (= (get old k) (get new k)))
+  (let [changed (filter (fn [k]
+                          (not= (get old k) (get new k)))
                         (keys new))]
     (select-keys new changed)))
     
